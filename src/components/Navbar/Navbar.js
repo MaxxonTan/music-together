@@ -46,7 +46,11 @@ export const Navbar = () => {
 
   return (
     <div className={styles.navbar}>
-      {searchResults.length !== 0 ? <div className={styles.overlay}></div> : ""}
+      {searchResults.length !== 0 ? (
+        <div className={styles.overlay} onClick={() => setInputValue("")}></div>
+      ) : (
+        ""
+      )}
 
       <div className={styles.container}>
         <div className={`${styles.search} ${focus ? styles.focus : ""}`}>

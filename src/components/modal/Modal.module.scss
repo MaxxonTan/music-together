@@ -1,12 +1,20 @@
 @import "../../colors-fonts/fonts";
 
 .modal {
-  position: absolute;
+  @media screen and (max-width: 445px) {
+    width: 100vw;
+  }
+
+  @media screen and (min-width: 446px) {
+    width: fit-content;
+  }
+
+  position: fixed;
   inset: 0;
   margin: auto;
   padding: 1.3em 1.5em;
+
   height: fit-content;
-  width: fit-content;
 
   border-radius: 7px;
   border: 3px solid $accent;
@@ -170,10 +178,10 @@
 }
 
 .overlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
   width: 350vw;
-  height: 350vh;
+  height: 100vh;
 
   background-color: rgba(0, 0, 0, 0.486);
   z-index: 1;
