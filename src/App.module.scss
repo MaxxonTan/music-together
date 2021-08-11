@@ -35,6 +35,7 @@ body {
     .main {
       flex-direction: column;
       overflow-y: scroll;
+      overflow-x: hidden;
 
       .lyrics {
         padding: 0 25vw;
