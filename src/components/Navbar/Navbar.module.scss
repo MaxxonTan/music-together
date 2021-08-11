@@ -1,0 +1,121 @@
+@import "../../colors-fonts/fonts";
+
+.navbar{
+    position: absolute;
+    font-family: $primary-font;
+    font-weight: 800;
+    z-index: 1;
+    background-color: transparent;
+
+    width: 90vw;
+    height: 5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    place-items: center;
+
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0em 7%;
+
+    .overlay{
+        position: absolute;
+        left: -100px;
+        width: 350vw;
+        height: 350vh;
+
+        background-color: rgba(0, 0, 0, 0.486);
+    }
+
+    p, label{
+        font-weight: 600;
+        font-size: 1.5em;
+    }
+
+    .container{
+        width: 100%;
+        display: flex;
+        place-items: center;
+        justify-content: center;
+        flex-direction: row;
+        background-color: rgba(255, 255, 255, 0);
+
+        .together{
+            padding-left: 1.5em;
+        }
+
+        .form{
+            height: 100%;
+            width: 100%
+        }
+        
+        .search{
+            position: relative;
+
+            height: 3.5rem;
+            width: 35rem;
+            display: flex;
+            place-items: center;
+            padding: 0 0.8em;
+            border-radius: 5px;
+            box-shadow: 0 0 0px 3px $accent;
+            background-color: $background-color;
+
+            font-size: 1.6em;
+
+            input{
+                height: 100%;
+                width: 100%;
+                border: none;
+                outline: none;
+                background-color: transparent;
+                font-size: 0.8em;
+                font-weight: 600;
+                color: $font-color;
+
+                padding-left: 1.3em;
+
+            }
+
+            ::placeholder{
+                font-family: $primary-font;
+                font-weight: normal;
+            }
+
+            .cancel{
+                opacity: 1;
+                padding-left: 0.5em;
+                cursor: pointer;
+            }
+
+            .searchResults{
+                position: absolute;
+                left: 0;
+                top: 100%;
+
+                width: 100%;
+                height: fit-content;
+                overflow-y: visible;
+
+                box-shadow: 0 0px 0px 3px $accent;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+
+                &::before{
+                    content: '';
+                    position: absolute;
+                    top: -10px;
+                    
+                    width: 100%;
+                    height: 100%;
+                    border-top: 10px solid $background-color;
+                    background-color: transparent;
+
+                    pointer-events: none;
+                }
+            }
+        }
+    }
+}
+

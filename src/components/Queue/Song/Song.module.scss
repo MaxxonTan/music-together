@@ -1,0 +1,61 @@
+@import '../../../colors-fonts/fonts';
+
+.song{
+
+    @media screen and (max-width: 480px){
+        :nth-child(5){
+            display: none;
+        }
+
+        :nth-child(2),:nth-child(3), :nth-child(4), :nth-child(5){
+            padding-right: 3vw; 
+        }
+    }
+
+    position: relative;
+    font-family: $primary-font;
+    font-weight: 600;
+    font-size: 1.4em;
+    width: 100%;
+
+    z-index: 0;
+
+    display: flex;
+    flex-direction: row;
+    place-items: center;
+
+    padding: 1.5em 0;
+
+    :nth-child(1), :nth-child(4){
+        cursor: pointer;
+    }
+
+    :nth-child(3){
+        margin-left: auto;
+    }
+
+    .content{
+        :nth-child(1){
+            padding-bottom: 0.3em;
+        }
+
+        :nth-child(2){
+            font-weight: 300;
+        }
+    }
+
+    *{
+        padding-right: 1.5em;
+    }
+
+    &::after{
+        pointer-events: none;
+
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+
+        border-bottom: 2px solid rgba(150, 150, 150, 0.185) ;    
+    }
+}

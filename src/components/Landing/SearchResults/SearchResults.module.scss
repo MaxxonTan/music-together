@@ -1,0 +1,38 @@
+@import "../../../colors-fonts/fonts";
+
+.searchResults {
+  display: flex;
+  place-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+
+  background-color: $background-color;
+  border-bottom: 2px solid rgba(150, 150, 150, 0.185);
+
+  width: 100%;
+  font-size: 0.6em;
+  font-weight: 400;
+  padding: 3% 8%;
+
+  .container {
+    overflow: hidden;
+
+    :nth-child(2) {
+      font-weight: 300;
+    }
+
+    p {
+      padding-right: 1em;
+      padding-top: 0.3em;
+    }
+  }
+
+  img {
+    width: 6em;
+    height: 4em;
+    object-fit: none;
+
+    border-radius: 5px;
+    border-radius: 7px;
+  }
+}

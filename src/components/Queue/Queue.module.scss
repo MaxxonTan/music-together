@@ -1,0 +1,83 @@
+@import '../../colors-fonts/fonts';
+
+
+
+.queue{
+    @media screen and (max-width: 488px){
+        .buttons{
+            :nth-child(3){
+                margin-top: 1em;
+            }
+        }
+    }
+
+    display: flex;
+    flex-direction: column;
+    font-family: $primary-font;
+
+    height: 100%;
+
+    input, .buttons{
+        margin-bottom: 0.5em;
+        width: 100%;
+    }
+
+    input{
+        border: none;
+        outline: 0;
+        font-size: 3.5em;
+        font-weight: 700;
+        background-color: $background-color;
+        color: $font-color;
+    }
+
+    .buttons{
+
+        button{
+            font-family: $primary-font;
+            font-size: 1.5em;     
+    
+            padding: 0.5em 0.8em;
+            margin-right: 0.6em;
+    
+            border: none;
+            border-radius: 5px;
+            background-color: transparent;
+            cursor: pointer;
+        }
+    
+        .play{
+            background-color: $accent;
+            color: white;
+        }
+
+        :nth-child(2), :nth-child(3){
+            border: 2px solid rgba(150, 150, 150, 0.185) ;
+            color: $accent;
+        }
+    }
+
+    .songs{
+        max-height: 52vh;
+
+        overflow: hidden;
+        overflow-y: scroll;
+
+        .tut{
+            margin-top: 1em;
+        }
+
+    }
+
+    ::-webkit-scrollbar {
+        width: 0.3em;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+      }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #888; 
+    }
+}

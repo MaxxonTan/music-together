@@ -1,0 +1,176 @@
+@import "../../colors-fonts/fonts";
+
+.modal {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  padding: 1.3em 1.5em;
+  height: fit-content;
+  width: fit-content;
+
+  border-radius: 7px;
+  border: 3px solid $accent;
+
+  font-family: $primary-font;
+  font-size: 1.6em;
+  color: $font-color;
+  background-color: $background-color;
+
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  z-index: 1;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    place-items: center;
+
+    width: 100%;
+    margin-bottom: 1em;
+
+    h1 {
+      line-height: 100%;
+      font-weight: 700;
+    }
+
+    i {
+      padding-top: 0.3em;
+      cursor: pointer;
+    }
+  }
+
+  .field,
+  .submit {
+    margin-top: 0.5em;
+  }
+
+  .field {
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+
+    display: flex;
+
+    label {
+      display: flex;
+      justify-content: center;
+      place-items: center;
+      padding: 0.6em 1.2em;
+      width: 10%;
+
+      background-color: $lighter-background-color;
+
+      i {
+        font-size: 0.7em;
+      }
+    }
+
+    input {
+      flex-grow: 1;
+      padding: 0.6em 0.7em;
+
+      border: none;
+      outline: none;
+
+      background-color: #42505a;
+      color: $font-color;
+
+      font-size: 1em;
+      font-weight: 400;
+
+      transition: background-color 0.2s ease;
+
+      &:hover,
+      &:focus {
+        background-color: #46555f;
+      }
+
+      &::placeholder {
+        color: #647480;
+        font-size: 0.8em;
+      }
+    }
+  }
+
+  .submit {
+    width: 100%;
+
+    font-size: 1em;
+    font-weight: 500;
+    padding: 0.4em 0.6em;
+
+    border: none;
+    border-radius: 5px;
+    background-color: $accent;
+    color: $font-color;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  p {
+    font-size: 0.8em;
+    margin-top: 0.8em;
+    color: #647480;
+  }
+
+  .roomInfo {
+    width: 100%;
+
+    h2 {
+      font-weight: 500;
+      margin-bottom: 0.3em;
+    }
+
+    .roomId {
+      display: flex;
+      place-items: center;
+      justify-content: space-between;
+
+      font-size: 0.9em;
+      background-color: #252c31;
+      border-radius: 5px;
+
+      margin-bottom: 1em;
+      padding: 0.8em 2em;
+      cursor: pointer;
+
+      h1 {
+        margin-right: 1em;
+
+        line-height: 100%;
+        letter-spacing: 0.1em;
+        font-weight: 400;
+      }
+
+      i {
+        padding-top: 0.3em;
+      }
+    }
+
+    .users {
+      background-color: #252c31;
+      border-radius: 5px;
+      padding: 0.4em 1em;
+
+      .user {
+        color: $font-color;
+        line-height: 1.5em;
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  width: 350vw;
+  height: 350vh;
+
+  background-color: rgba(0, 0, 0, 0.486);
+  z-index: 1;
+}
