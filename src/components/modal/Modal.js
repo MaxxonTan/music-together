@@ -16,6 +16,7 @@ const Modal = (props) => {
   const [roomId, setRoomId] = useState("");
   const [users, setUsers] = useState([]);
   const [name, setName] = useState("");
+  const [invalidRoom, setInvalidRoom] = useState(false);
 
   useEffect(() => {
     if (userInfo.isInRoom) {
@@ -45,40 +46,40 @@ const Modal = (props) => {
 
     if (roomId !== "") {
       //Join room
-      setUserInfo({
-        name: name,
-        userId: tempUserId,
-        isInRoom: true,
-        roomId: roomId,
-      });
 
       db.ref("rooms/" + roomId).once("value", (snap) => {
-        console.log(snap.val());
+        if (snap.exists()) {
+          setUserInfo({
+            name: name,
+            userId: tempUserId,
+            isInRoom: true,
+            roomId: roomId,
+          });
+          db.ref("rooms/" + roomId + "/users").set({
+            ...snap.val().users,
+            [tempUserId]: name,
+          });
 
-        db.ref("rooms/" + roomId + "/users").set({
-          ...snap.val().users,
-          [tempUserId]: name,
-        });
+          db.ref("rooms/" + roomId + "/users").once("value", (snap) => {
+            setUsers(Object.values(snap.val()));
+          });
 
-        db.ref("rooms/" + roomId + "/users").once("value", (snap) => {
-          setUsers(Object.values(snap.val()));
-        });
+          db.ref("rooms/" + roomId + "/users").on("child_added", (snap) => {
+            toast(snap.val() + " joined the room");
+          });
 
-        db.ref("rooms/" + roomId + "/users").on("child_added", (snap) => {
-          toast(snap.val() + " joined the room");
-        });
+          db.ref("rooms/" + roomId + "/users").on("child_removed", (snap) => {
+            toast(snap.val() + " left the room");
+          });
 
-        db.ref("rooms/" + roomId + "/users").on("child_removed", (snap) => {
-          toast(snap.val() + " left the room");
-        });
+          if (snap.child("songQueue").exists())
+            setSongQueue(snap.val().songQueue);
+          setCurrentSongStatus(snap.val().currentSongStatus);
 
-        if (snap.child("songQueue").exists())
-          setSongQueue(snap.val().songQueue);
-        setCurrentSongStatus(snap.val().currentSongStatus);
-
-        //Set duration to 0 to get everyone in sync when someone joins
-        db.ref("rooms/" + roomId + "/currentSongStatus/isPlaying").set(false);
-        db.ref("rooms/" + roomId + "/seekTo").set(0.001);
+          //Set duration to 0 to get everyone in sync when someone joins
+          db.ref("rooms/" + roomId + "/currentSongStatus/isPlaying").set(false);
+          db.ref("rooms/" + roomId + "/seekTo").set(0.001);
+        } else setInvalidRoom(true);
       });
 
       addListeners(roomId);
@@ -176,7 +177,11 @@ const Modal = (props) => {
             >
               {roomId ? "Join" : "Create"} room
             </button>
-            <p>*Leave room Id blank to create room</p>
+            {invalidRoom ? (
+              <p className={styles.invalid}>Invalid room id</p>
+            ) : (
+              <p>*Leave room Id blank to create room</p>
+            )}
           </>
         ) : (
           <div className={styles.roomInfo}>
